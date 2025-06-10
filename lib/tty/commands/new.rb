@@ -210,7 +210,7 @@ module TTY
         else
           gem_license = " " * gemspec.pre_var_indent
           gem_license << "#{gemspec.var_name}.license"
-          gem_license << " " * (gemspec.post_var_indent - ".license".size)
+          gem_license << " " * [(gemspec.post_var_indent - ".license".size), 0].max
           gem_license << "= \"#{licenses[license][:name]}\""
           gemspec.content.gsub!(/(^\s*#{gemspec.var_name}\.name\s*=\s*.*$)/,
                                 "\\1\n#{gem_license}")
